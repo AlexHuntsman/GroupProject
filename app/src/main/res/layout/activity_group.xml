@@ -8,12 +8,12 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="New Button"
+        android:text="Send"
         android:id="@+id/sendButton"
-        android:layout_marginTop="116dp"
+        android:layout_marginTop="48dp"
         android:layout_below="@+id/phoneNumber"
-        android:layout_alignRight="@+id/phoneNumber"
-        android:layout_alignEnd="@+id/phoneNumber" />
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -38,4 +38,21 @@
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
         android:hint="Text Message" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Text Alex"
+        android:id="@+id/AlexButton"
+        android:layout_alignTop="@+id/sendButton"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Text Josh"
+        android:id="@+id/JoshButton"
+        android:layout_below="@+id/AlexButton"
+        android:layout_alignLeft="@+id/AlexButton"
+        android:layout_alignStart="@+id/AlexButton" />
 </RelativeLayout>

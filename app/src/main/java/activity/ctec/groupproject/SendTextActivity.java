@@ -9,13 +9,17 @@ import android.view.View;
 import android.app.Activity;
 import android.widget.Toast;
 import android.telephony.SmsManager;
+import java.util.ArrayList;
 
 
 public class SendTextActivity extends Activity
 {
     private Button sendButton;
+    private Button AlexButton;
+    private Button JoshButton;
     private EditText phoneNumber;
     private EditText messageText;
+    private ArrayList<String> defaultList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -24,22 +28,84 @@ public class SendTextActivity extends Activity
         setContentView(R.layout.activity_group);
 
         sendButton = (Button) findViewById(R.id.sendButton);
+        AlexButton = (Button) findViewById(R.id.AlexButton);
+        JoshButton = (Button) findViewById(R.id.JoshButton);
         phoneNumber = (EditText) findViewById(R.id.phoneNumber);
         messageText = (EditText) findViewById(R.id.messageText);
+        defaultList = new ArrayList<String>();
 
+        buildDefaultList();
         setupListeners();
+    }
+    private void buildDefaultList()
+    {
+        this.defaultList.add("hows it going");
+        this.defaultList.add("how has your day been");
+        this.defaultList.add("Whats up");
     }
     private void setupListeners()
     {
-        sendButton.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View currentView) {
+        AlexButton.setOnClickListener(new View.OnClickListener()
+        {
+            public void onClick(View currentView)
+            {
+                int randomMessage = (int) (Math.random() * 3);
+                if (messageText.getText().toString().equals(""))
+                {
+                    messageText.setText(defaultList.get(randomMessage));
+                }
+                try {
+                    String contact = "8017181459";
+                    String message = messageText.getText().toString();
+                    sendSMS(contact, message);
+
+                    Toast.makeText(currentView.getContext(), "message was sent" , Toast.LENGTH_SHORT).show();
+                } catch (Exception currentException)
+                {
+                    Toast.makeText(currentView.getContext(), "message was not sent" , Toast.LENGTH_LONG).show();
+                    Toast.makeText(currentView.getContext(), currentException.getMessage(), Toast.LENGTH_LONG).show();
+                }
+            }
+        });
+        JoshButton.setOnClickListener(new View.OnClickListener()
+        {
+            public void onClick(View currentView)
+            {
+                int randomMessage = (int) (Math.random() * 3);
+                if (messageText.getText().toString().equals(""))
+                {
+                    messageText.setText(defaultList.get(randomMessage));
+                }
+                try {
+                    String contact = "8018820589";
+                    String message = messageText.getText().toString();
+                    sendSMS(contact, message);
+
+                    Toast.makeText(currentView.getContext(), "message was sent" , Toast.LENGTH_SHORT).show();
+                } catch (Exception currentException)
+                {
+                    Toast.makeText(currentView.getContext(), "message was not sent" , Toast.LENGTH_LONG).show();
+                    Toast.makeText(currentView.getContext(), currentException.getMessage(), Toast.LENGTH_LONG).show();
+                }
+            }
+        });
+        sendButton.setOnClickListener(new View.OnClickListener()
+        {
+            public void onClick(View currentView)
+            {
+                int randomMessage = (int) (Math.random() * 3);
+                if (messageText.getText().toString().equals(""))
+                {
+                    messageText.setText(defaultList.get(randomMessage));
+                }
                 try {
                     String contact = phoneNumber.getText().toString();
                     String message = messageText.getText().toString();
                     sendSMS(contact, message);
 
                     Toast.makeText(currentView.getContext(), "message was sent" , Toast.LENGTH_SHORT).show();
-                } catch (Exception currentException) {
+                } catch (Exception currentException)
+                {
                     Toast.makeText(currentView.getContext(), "message was not sent" , Toast.LENGTH_LONG).show();
                     Toast.makeText(currentView.getContext(), currentException.getMessage(), Toast.LENGTH_LONG).show();
                 }
