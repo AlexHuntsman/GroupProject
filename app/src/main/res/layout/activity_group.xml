@@ -30,14 +30,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/messageText"
-        android:layout_below="@+id/sendButton"
-        android:layout_marginTop="53dp"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
         android:hint="Text Message" />
+
 
     <Button
         android:layout_width="wrap_content"
@@ -55,4 +54,7 @@
         android:layout_below="@+id/AlexButton"
         android:layout_alignLeft="@+id/AlexButton"
         android:layout_alignStart="@+id/AlexButton" />
+
+
+
 </RelativeLayout>

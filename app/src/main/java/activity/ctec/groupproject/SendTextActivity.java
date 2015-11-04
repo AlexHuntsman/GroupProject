@@ -19,7 +19,7 @@ public class SendTextActivity extends Activity
     private Button JoshButton;
     private EditText phoneNumber;
     private EditText messageText;
-    private ArrayList<String> defaultList;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -32,7 +32,6 @@ public class SendTextActivity extends Activity
         JoshButton = (Button) findViewById(R.id.JoshButton);
         phoneNumber = (EditText) findViewById(R.id.phoneNumber);
         messageText = (EditText) findViewById(R.id.messageText);
-        defaultList = new ArrayList<String>();
 
         buildDefaultList();
         setupListeners();
@@ -89,6 +88,8 @@ public class SendTextActivity extends Activity
                 }
             }
         });
+
+
         sendButton.setOnClickListener(new View.OnClickListener()
         {
             public void onClick(View currentView)
@@ -98,21 +99,25 @@ public class SendTextActivity extends Activity
                 {
                     messageText.setText(defaultList.get(randomMessage));
                 }
-                try {
+                
+
+                try
+                {
                     String contact = phoneNumber.getText().toString();
                     String message = messageText.getText().toString();
                     sendSMS(contact, message);
 
                     Toast.makeText(currentView.getContext(), "message was sent" , Toast.LENGTH_SHORT).show();
-                } catch (Exception currentException)
+                }
+                catch (Exception currentException)
                 {
                     Toast.makeText(currentView.getContext(), "message was not sent" , Toast.LENGTH_LONG).show();
                     Toast.makeText(currentView.getContext(), currentException.getMessage(), Toast.LENGTH_LONG).show();
                 }
             }
         });
-    }
-    /**
+
+           /**
      * Sends a Text based SMS to a specified number.
      * @param messageAddress the number this app sends a text to.
      *@param messageContent The message being sent.
