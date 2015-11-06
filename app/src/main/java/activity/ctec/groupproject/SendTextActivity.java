@@ -19,6 +19,7 @@ public class SendTextActivity extends Activity
     private Button JoshButton;
     private EditText phoneNumber;
     private EditText messageText;
+    private ArrayList<String> defaultList;
 
 
     @Override
@@ -32,10 +33,15 @@ public class SendTextActivity extends Activity
         JoshButton = (Button) findViewById(R.id.JoshButton);
         phoneNumber = (EditText) findViewById(R.id.phoneNumber);
         messageText = (EditText) findViewById(R.id.messageText);
+        defaultList = new ArrayList<String>();
 
         buildDefaultList();
         setupListeners();
     }
+
+    /**
+     *constructing the arrayList defaultList
+     */
     private void buildDefaultList()
     {
         this.defaultList.add("hows it going");
@@ -44,13 +50,13 @@ public class SendTextActivity extends Activity
     }
     private void setupListeners()
     {
-        AlexButton.setOnClickListener(new View.OnClickListener()
-        {
-            public void onClick(View currentView)
-            {
+        /**
+         * button for the first preprogramed
+         */
+        AlexButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View currentView) {
                 int randomMessage = (int) (Math.random() * 3);
-                if (messageText.getText().toString().equals(""))
-                {
+                if (messageText.getText().toString().equals("")) {
                     messageText.setText(defaultList.get(randomMessage));
                 }
                 try {
@@ -58,21 +64,20 @@ public class SendTextActivity extends Activity
                     String message = messageText.getText().toString();
                     sendSMS(contact, message);
 
-                    Toast.makeText(currentView.getContext(), "message was sent" , Toast.LENGTH_SHORT).show();
-                } catch (Exception currentException)
-                {
-                    Toast.makeText(currentView.getContext(), "message was not sent" , Toast.LENGTH_LONG).show();
+                    Toast.makeText(currentView.getContext(), "message was sent", Toast.LENGTH_SHORT).show();
+                } catch (Exception currentException) {
+                    Toast.makeText(currentView.getContext(), "message was not sent", Toast.LENGTH_LONG).show();
                     Toast.makeText(currentView.getContext(), currentException.getMessage(), Toast.LENGTH_LONG).show();
                 }
             }
         });
-        JoshButton.setOnClickListener(new View.OnClickListener()
-        {
-            public void onClick(View currentView)
-            {
+        /**
+         * the second button for the preprogramed number
+         */
+        JoshButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View currentView) {
                 int randomMessage = (int) (Math.random() * 3);
-                if (messageText.getText().toString().equals(""))
-                {
+                if (messageText.getText().toString().equals("")) {
                     messageText.setText(defaultList.get(randomMessage));
                 }
                 try {
@@ -80,42 +85,38 @@ public class SendTextActivity extends Activity
                     String message = messageText.getText().toString();
                     sendSMS(contact, message);
 
-                    Toast.makeText(currentView.getContext(), "message was sent" , Toast.LENGTH_SHORT).show();
-                } catch (Exception currentException)
-                {
-                    Toast.makeText(currentView.getContext(), "message was not sent" , Toast.LENGTH_LONG).show();
+                    Toast.makeText(currentView.getContext(), "message was sent", Toast.LENGTH_SHORT).show();
+                } catch (Exception currentException) {
+                    Toast.makeText(currentView.getContext(), "message was not sent", Toast.LENGTH_LONG).show();
                     Toast.makeText(currentView.getContext(), currentException.getMessage(), Toast.LENGTH_LONG).show();
                 }
             }
         });
 
 
-        sendButton.setOnClickListener(new View.OnClickListener()
-        {
-            public void onClick(View currentView)
-            {
+
+        sendButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View currentView) {
+                // sends a random message from the array if none is supplied
                 int randomMessage = (int) (Math.random() * 3);
-                if (messageText.getText().toString().equals(""))
-                {
+                if (messageText.getText().toString().equals("")) {
                     messageText.setText(defaultList.get(randomMessage));
                 }
-                
 
-                try
-                {
+
+                try {
                     String contact = phoneNumber.getText().toString();
                     String message = messageText.getText().toString();
                     sendSMS(contact, message);
 
-                    Toast.makeText(currentView.getContext(), "message was sent" , Toast.LENGTH_SHORT).show();
-                }
-                catch (Exception currentException)
-                {
-                    Toast.makeText(currentView.getContext(), "message was not sent" , Toast.LENGTH_LONG).show();
+                    Toast.makeText(currentView.getContext(), "message was sent", Toast.LENGTH_SHORT).show();
+                } catch (Exception currentException) {
+                    Toast.makeText(currentView.getContext(), "message was not sent", Toast.LENGTH_LONG).show();
                     Toast.makeText(currentView.getContext(), currentException.getMessage(), Toast.LENGTH_LONG).show();
                 }
             }
         });
+    }
 
            /**
      * Sends a Text based SMS to a specified number.
@@ -144,7 +145,8 @@ public class SendTextActivity extends Activity
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        if (id == R.id.action_settings)
+        {
             return true;
         }
 
