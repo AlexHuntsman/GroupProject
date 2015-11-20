@@ -54,7 +54,7 @@ public class SendTextActivity extends Activity
     private void setupListeners()
     {
         /**
-         * button for the first preprogramed
+         * button for the first preprogramed number
          */
         AlexButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View currentView) {
