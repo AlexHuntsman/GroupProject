@@ -14,6 +14,7 @@ import java.util.ArrayList;
 
 public class SendTextActivity extends Activity
 {
+    // Declareing the things we are using
     private Button sendButton;
     private Button AlexButton;
     private Button JoshButton;
@@ -28,6 +29,7 @@ public class SendTextActivity extends Activity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_group);
 
+        // initilizing the things we are using
         sendButton = (Button) findViewById(R.id.sendButton);
         AlexButton = (Button) findViewById(R.id.AlexButton);
         JoshButton = (Button) findViewById(R.id.JoshButton);
@@ -38,6 +40,7 @@ public class SendTextActivity extends Activity
         buildDefaultList();
         setupListeners();
     }
+
 
     /**
      *constructing the arrayList defaultList
@@ -85,6 +88,7 @@ public class SendTextActivity extends Activity
                     String message = messageText.getText().toString();
                     sendSMS(contact, message);
 
+
                     Toast.makeText(currentView.getContext(), "message was sent", Toast.LENGTH_SHORT).show();
                 } catch (Exception currentException) {
                     Toast.makeText(currentView.getContext(), "message was not sent", Toast.LENGTH_LONG).show();
@@ -92,6 +96,7 @@ public class SendTextActivity extends Activity
                 }
             }
         });
+
 
 
 
