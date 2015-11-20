@@ -10,6 +10,7 @@ import android.app.Activity;
 import android.widget.Toast;
 import android.telephony.SmsManager;
 import java.util.ArrayList;
+import android.media.MediaPlayer;
 
 
 public class SendTextActivity extends Activity
@@ -21,6 +22,8 @@ public class SendTextActivity extends Activity
     private EditText phoneNumber;
     private EditText messageText;
     private ArrayList<String> defaultList;
+   // implimenting sounds
+    private MediaPlayer soundPlayer;
 
 
     @Override
@@ -36,9 +39,12 @@ public class SendTextActivity extends Activity
         phoneNumber = (EditText) findViewById(R.id.phoneNumber);
         messageText = (EditText) findViewById(R.id.messageText);
         defaultList = new ArrayList<String>();
+        soundPlayer = MediaPlayer.create(this.getBaseContext(), R.raw.blop);
 
         buildDefaultList();
         setupListeners();
+
+
     }
 
 
@@ -56,16 +62,23 @@ public class SendTextActivity extends Activity
         /**
          * button for the first preprogramed number
          */
-        AlexButton.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View currentView) {
+        AlexButton.setOnClickListener(new View.OnClickListener()
+        {
+            public void onClick(View currentView)
+            {
                 int randomMessage = (int) (Math.random() * 3);
-                if (messageText.getText().toString().equals("")) {
+                if (messageText.getText().toString().equals(""))
+                {
                     messageText.setText(defaultList.get(randomMessage));
                 }
-                try {
+                try
+                {
+                    // plays a sound effect when you push the button
+                    soundPlayer.start();
                     String contact = "8017181459";
                     String message = messageText.getText().toString();
                     sendSMS(contact, message);
+
 
                     Toast.makeText(currentView.getContext(), "message was sent", Toast.LENGTH_SHORT).show();
                 } catch (Exception currentException) {
@@ -84,9 +97,12 @@ public class SendTextActivity extends Activity
                     messageText.setText(defaultList.get(randomMessage));
                 }
                 try {
+                    // plays a sound effect when you push the button
+                    soundPlayer.start();
                     String contact = "8018820589";
                     String message = messageText.getText().toString();
                     sendSMS(contact, message);
+
 
 
                     Toast.makeText(currentView.getContext(), "message was sent", Toast.LENGTH_SHORT).show();
@@ -104,15 +120,19 @@ public class SendTextActivity extends Activity
             public void onClick(View currentView) {
                 // sends a random message from the array if none is supplied
                 int randomMessage = (int) (Math.random() * 3);
-                if (messageText.getText().toString().equals("")) {
+                if (messageText.getText().toString().equals(""))
+                {
                     messageText.setText(defaultList.get(randomMessage));
                 }
 
 
                 try {
+                    // plays a sound effect when you push the button
+                    soundPlayer.start();
                     String contact = phoneNumber.getText().toString();
                     String message = messageText.getText().toString();
                     sendSMS(contact, message);
+
 
                     Toast.makeText(currentView.getContext(), "message was sent", Toast.LENGTH_SHORT).show();
                 } catch (Exception currentException) {
